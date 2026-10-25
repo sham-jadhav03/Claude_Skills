@@ -38,25 +38,7 @@ A Claude skill that activates compact, high-density response mode on command.
 
 ## Installation
 
-### Option A — Claude.ai Skills (recommended)
-
-1. Download [`reduce-token.skill`](./reduce-token/SKILL.md)
-2. Go to **Claude.ai → Settings → Skills → Install**
-3. Upload the file
-4. Type `/reduceToken` in any chat to activate
-
-### Option B — Paste manually
-
-Copy the contents of [`reduce-token/SKILL.md`](./reduce-token/SKILL.md) into your Claude chat as a system prompt or at the start of a session.
-
-### Option C — Claude Code
-
-Add to your `CLAUDE.md`:
-```
-Read reduce-token/SKILL.md and apply its rules whenever the user types /reduceToken.
-```
-
-### Option D - Claude Desktop (recommended for daily use)
+### Option A — Claude Desktop (recommended for daily use)
 
 Claude Desktop loads skills from a local folder it watches automatically.
 
@@ -87,6 +69,32 @@ Copy-Item -Recurse Claude-Token-Reducers\reduce-token "$env:APPDATA\Claude\skill
 
 ---
 
+### Option B — Claude.ai (browser)
+
+1. Go to **claude.ai → Settings → Skills → Install**
+2. Upload `reduce-token/SKILL.md`
+3. Type `/reduceToken` to activate
+
+---
+
+### Option C — Claude Code
+
+Add to your project's `CLAUDE.md`:
+```
+Read .claude/skills/reduce-token/SKILL.md and apply its rules whenever the user types /reduceToken.
+```
+Then copy the skill:
+```bash
+mkdir -p .claude/skills
+cp -r reduce-token .claude/skills/
+```
+
+---
+
+### Option D — Manual (no install, any session)
+
+Paste the raw contents of [`reduce-token/SKILL.md`](./reduce-token/SKILL.md) at the start of any chat. Works on Claude.ai, Claude Desktop, or any Claude API client.
+
 ---
 
 ## Usage examples
@@ -108,14 +116,25 @@ What is a transformer attention mechanism?
 
 ---
 
+## Skills
+
+| Skill | Command | Purpose |
+|---|---|---|
+| reduce-token | `/reduceToken` | Compact, dense responses — eliminates filler, enforces token budgets |
+| oa | `/oa` | Deep Problem Solver — 7-phase DSA/algorithm framework, trap detection |
+
+---
+
 ## Project structure
 
 ```
 Claude-Token-Reducers/
 ├── README.md
 ├── LICENSE
-└── reduce-token/
-    └── SKILL.md        ← the skill definition
+├── reduce-token/
+│   └── SKILL.md        ← token budget + compact mode skill
+└── oa/
+    └── SKILL.md        ← deep problem solver skill
 ```
 
 ---
